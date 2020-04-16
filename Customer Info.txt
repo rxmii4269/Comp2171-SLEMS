@@ -1,0 +1,2 @@
+Customer Name                  Customer Phone Number          Delivery Address               Email Address                  Order Quantity                 Cost                     
+CowBoy Beepop                  7087822677                     yaad                           romajufgnff@gmail.com          50                             34950                    

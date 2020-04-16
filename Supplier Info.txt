@@ -1,0 +1,2 @@
+Company Name                   Email Address                  Phone Number                   Farm Address         Amount of Eggs      
+CB Chicken                     cbchicken@chicken.com          8764448851                     32 Cluck Ave         50000               
