@@ -98,7 +98,7 @@ public class New_UserUI {
                 System.out.println((new String(new char[50])).replace("\u0000", "\r\n"));
             }
 
-            JOptionPane.showMessageDialog(this.getFrame(), "User added", "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/resources/check-mark.png")));
+            JOptionPane.showMessageDialog(this.getFrame(), "User added", "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/check-mark.png")));
             this.out.close();
         });
         JLabel label_1 = new JLabel("First Name");

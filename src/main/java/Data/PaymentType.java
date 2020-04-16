@@ -13,8 +13,6 @@ public enum PaymentType {
 
     public static PaymentType findByName(String name) {
         PaymentType[] var1 = values();
-        int var2 = var1.length;
-
         for (PaymentType at : var1) {
             if (name.equalsIgnoreCase(at.getLongName())) {
                 return at;

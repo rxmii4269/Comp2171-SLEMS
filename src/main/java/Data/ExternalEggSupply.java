@@ -25,6 +25,7 @@ public class ExternalEggSupply extends Egg {
         System.out.println("Enter the amount of eggs acquired from the supplier");
         Scanner input = new Scanner(System.in);
         this.numEggsSupplied = input.nextInt();
+        input.close();
     }
 
     int getNumEggsSupplied() {

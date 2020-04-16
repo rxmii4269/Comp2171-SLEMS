@@ -23,6 +23,7 @@ public class Order {
         System.out.println("Please enter the amount of 'SLEMS' liquid eggs the customer ordered");
         this.product = sc.nextInt();
         this.cust.customer.add(4, String.valueOf(this.product));
+        sc.close();
     }
 
     private long calcCost() {
@@ -45,16 +46,8 @@ public class Order {
         return this.status;
     }
 
-    private void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
     public Date getDate() {
         return this.date;
-    }
-
-    private void setDate(Date date) {
-        this.date = date;
     }
 
     private long getProduct() {

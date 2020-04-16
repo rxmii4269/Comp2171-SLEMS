@@ -133,7 +133,7 @@ class New_ExtSupplierUI {
 
             this.out.print(String.format(this.formatStr, this.details.get(0), this.details.get(1), this.details.get(2), this.details.get(3), this.details.get(4)));
             this.out.close();
-            JOptionPane.showMessageDialog(this.getFrame(), "Supplier added", "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/resources/check-mark.png")));
+            JOptionPane.showMessageDialog(this.getFrame(), "Supplier added", "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/check-mark.png")));
         });
         this.frame.getContentPane().add(button_2);
         JButton btnBack = new JButton("BACK");

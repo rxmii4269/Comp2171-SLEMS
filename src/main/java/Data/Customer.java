@@ -18,13 +18,12 @@ public class Customer {
     private final PrintWriter out;
     private String emailAddress;
     private int amt;
-    private final Order ord;
-
+    
     Customer(String customerName, String phoneNum, String deliveryAddress, String active) throws IOException {
         this.writeTable = new FileWriter("Customer Info.txt", StandardCharsets.UTF_8, true);
         this.bw = new BufferedWriter(this.writeTable);
         this.out = new PrintWriter(this.bw);
-        this.ord = new Order();
+        new Order();
         this.customerName = customerName;
         this.phoneNum = phoneNum;
         this.deliveryAddress = deliveryAddress;
@@ -35,7 +34,7 @@ public class Customer {
         this.writeTable = new FileWriter("Customer Info.txt", StandardCharsets.UTF_8, true);
         this.bw = new BufferedWriter(this.writeTable);
         this.out = new PrintWriter(this.bw);
-        this.ord = new Order();
+        new Order();
         this.customerName = custName;
         this.phoneNum = phoneNum;
         this.deliveryAddress = address;

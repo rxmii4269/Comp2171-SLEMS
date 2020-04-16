@@ -1,11 +1,10 @@
 package User;
 
-import Security.Login_UserUI;
-import UI.New_UserUI;
-
-import java.awt.*;
+import java.awt.FontFormatException;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import Security.Login_UserUI;
 
 public class User {
     private String firstName;
@@ -98,11 +97,6 @@ public class User {
     public void setLoginName() {
         String var10001 = this.getFirstName();
         this.loginName = var10001 + this.getLastName();
-    }
-
-    private void newUser() throws IOException {
-        New_UserUI addUser = new New_UserUI();
-        addUser.getFrame().setVisible(true);
     }
 
     public void viewUser() {

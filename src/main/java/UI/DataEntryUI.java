@@ -14,6 +14,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 class DataEntryUI extends JFrame {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -2258861264252251529L;
     private final JButton saveButton;
     private final JButton unitsProduce;
     private final JButton exitButton;

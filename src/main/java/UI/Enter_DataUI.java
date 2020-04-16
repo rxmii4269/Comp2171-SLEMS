@@ -136,7 +136,7 @@ public class Enter_DataUI {
             this.pout.close();
             this.out.close();
             if (!this.getIDField().getText().equals("") && !this.getECollectedField().getText().equals("") && !this.getESpoiltField().getText().equals("") && !this.getEBrokenField().getText().equals("") && !this.getWorkstationS().getText().equals("") && !this.getWorkstationN().getText().equals("")) {
-                JOptionPane.showMessageDialog(this.getFrame(), "Data saved", "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/resources/check-mark.png")));
+                JOptionPane.showMessageDialog(this.getFrame(), "Data saved", "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/check-mark.png")));
             } else {
                 JOptionPane.showMessageDialog(this.getFrame(), "Please Enter All Fields", "Missing Data", JOptionPane.ERROR_MESSAGE);
             }

@@ -14,8 +14,6 @@ public enum OrderStatus {
 
     public static OrderStatus findByName(String name) {
         OrderStatus[] var1 = values();
-        int var2 = var1.length;
-
         for (OrderStatus o : var1) {
             if (name.equalsIgnoreCase(o.getName())) {
                 return o;

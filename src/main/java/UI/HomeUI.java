@@ -157,7 +157,7 @@ public class HomeUI {
                 }
             }
 
-            JOptionPane.showMessageDialog(this.getFrame(), "Report Successfully Created", "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(HomeUI.class.getResource("/resources/check-mark.png")));
+            JOptionPane.showMessageDialog(this.getFrame(), "Report Successfully Created", "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(HomeUI.class.getResource("/check-mark.png")));
         });
         this.frame.getContentPane().add(btnGenerateReport_1);
         JButton btnLogout = new JButton("LOGOUT");

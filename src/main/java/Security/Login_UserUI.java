@@ -66,8 +66,6 @@ public class Login_UserUI {
         btnLogin.setBackground(new Color(25, 25, 112));
         btnLogin.addActionListener((e) -> {
             char[] password = this.getPassword().getPassword();
-            int var4 = password.length;
-
             for (char s : password) {
                 String tmp = this.Password;
                 this.Password = tmp + s;
@@ -76,7 +74,7 @@ public class Login_UserUI {
             this.username = this.getUsername().getText();
             HomeUI home;
             if (this.Password.equalsIgnoreCase("admin") && this.username.equalsIgnoreCase("Supervisor")) {
-                JOptionPane.showMessageDialog(this.getFrame(), "Login Successful\n Welcome SuperVisor", "SLEMS SUPERVISOR", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/resources/check-mark.png")));
+                JOptionPane.showMessageDialog(this.getFrame(), "Login Successful\n Welcome SuperVisor", "SLEMS SUPERVISOR", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/check-mark.png")));
                 this.savedU = this.getUsername().getText();
                 this.frame.dispose();
                 home = new HomeUI();

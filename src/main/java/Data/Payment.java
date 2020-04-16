@@ -5,7 +5,6 @@ class Payment {
     private Customer customer;
 
     Payment(String type, float amount, Customer customer) {
-        PaymentType pType = PaymentType.findByName(type);
         this.amount = amount;
         this.customer = customer;
     }

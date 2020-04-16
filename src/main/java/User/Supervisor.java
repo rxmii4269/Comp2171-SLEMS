@@ -3,6 +3,10 @@ package User;
 import java.io.Serializable;
 
 public class Supervisor extends User implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -2701149358413516598L;
     private static String firstName;
     private static String lastName;
     private static String employeeID;
@@ -26,8 +30,7 @@ public class Supervisor extends User implements Serializable {
 
     public static Supervisor getInstance() {
         if (getSoleInstance() == null) {
-            Class <Supervisor> var0 = Supervisor.class;
-            synchronized(Supervisor.class) {
+            synchronized (Supervisor.class) {
                 if (getSoleInstance() == null) {
                     setSoleInstance(new Supervisor(firstName, lastName, employeeID, emailAddress, phoneNumber, position));
                 }

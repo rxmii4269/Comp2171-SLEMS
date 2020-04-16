@@ -1,12 +1,10 @@
 
 package Data;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Egg {
     private DateTimeFormatter date = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss");
-    private final LocalDateTime now = LocalDateTime.now();
     private int EggCount;
     private String employeeID;
     private int numEggsCollected;
