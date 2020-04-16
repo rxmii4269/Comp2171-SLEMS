@@ -14,13 +14,13 @@ public class User {
     private long phoneNum;
     private String password;
     private String loginName;
-    private User.Position position;
+    private Position position;
     private ArrayList<String> details = new ArrayList<>();
 
     public User() {
     }
 
-    User(String employeeID, String firstName, String lastName, String emailAddress, long phoneNum, User.Position position) {
+    User(String employeeID, String firstName, String lastName, String emailAddress, long phoneNum, Position position) {
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,11 +34,11 @@ public class User {
         user.Login();
     }
 
-    public User.Position getPosition() {
+    public Position getPosition() {
         return this.position;
     }
 
-    public void setPosition(User.Position position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -126,50 +126,5 @@ public class User {
 
     public void setDetails(ArrayList<String> details) {
         this.details = details;
-    }
-
-    public enum Position {
-        Supervisor("Supervisor"),
-        Subordinate("Subordinate");
-
-        private String position;
-
-        Position(String position) {
-            this.position = position;
-        }
-
-        public static User.Position findByName(String name) {
-            User.Position[] var1 = values();
-            int var2 = var1.length;
-
-            for (Position pos : var1) {
-                if (name.equalsIgnoreCase(pos.getPosition())) {
-                    return pos;
-                }
-            }
-
-            return valueOf(Position.class, name);
-        }
-
-        public static boolean contains(String test) {
-            User.Position[] var1 = values();
-            int var2 = var1.length;
-
-            for (Position p : var1) {
-                if (p.name().equalsIgnoreCase(test)) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public String getPosition() {
-            return this.position;
-        }
-
-        public void setPosition(String position) {
-            this.position = position;
-        }
     }
 }

@@ -1,8 +1,8 @@
 package UI;
 
+import User.Position;
 import User.Subordinate;
 import User.Supervisor;
-import User.User.Position;
 
 import javax.swing.*;
 import java.awt.*;
