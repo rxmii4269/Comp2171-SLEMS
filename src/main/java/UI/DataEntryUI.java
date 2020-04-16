@@ -63,8 +63,18 @@ class DataEntryUI extends JFrame {
         this.getExitButton().addActionListener((e) -> {
             this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             this.dispose();
-            Login_UserUI window = new Login_UserUI();
-            window.initialize();
+            Login_UserUI window = null;
+            try {
+                window = new Login_UserUI();
+            } catch (IOException | FontFormatException ioException) {
+                ioException.printStackTrace();
+            }
+            try {
+                assert window != null;
+                window.initialize();
+            } catch (IOException | FontFormatException ioException) {
+                ioException.printStackTrace();
+            }
         });
         this.saveButton = new JButton("Save");
         this.getSaveButton().addActionListener((e) -> {

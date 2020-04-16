@@ -3,6 +3,7 @@ package User;
 import Security.Login_UserUI;
 import UI.New_UserUI;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -116,7 +117,13 @@ public class User {
     }
 
     private void Login() {
-        Login_UserUI login = new Login_UserUI();
+        Login_UserUI login = null;
+        try {
+            login = new Login_UserUI();
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+        assert login != null;
         login.getFrame().setVisible(true);
     }
 

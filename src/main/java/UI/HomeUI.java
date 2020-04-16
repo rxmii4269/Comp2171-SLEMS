@@ -165,7 +165,13 @@ public class HomeUI {
         btnLogout.setBackground(Color.WHITE);
         btnLogout.addActionListener((e) -> {
             this.frame.dispose();
-            Login_UserUI login = new Login_UserUI();
+            Login_UserUI login = null;
+            try {
+                login = new Login_UserUI();
+            } catch (IOException | FontFormatException ioException) {
+                ioException.printStackTrace();
+            }
+            assert login != null;
             login.getFrame().setVisible(true);
         });
         btnLogout.setBounds(455, 8, 89, 23);
