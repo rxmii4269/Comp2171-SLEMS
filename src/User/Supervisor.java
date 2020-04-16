@@ -26,7 +26,7 @@ public class Supervisor extends User implements Serializable {
 
     public static Supervisor getInstance() {
         if (getSoleInstance() == null) {
-            Class var0 = Supervisor.class;
+            Class <Supervisor> var0 = Supervisor.class;
             synchronized(Supervisor.class) {
                 if (getSoleInstance() == null) {
                     setSoleInstance(new Supervisor(firstName, lastName, employeeID, emailAddress, phoneNumber, position));
