@@ -17,9 +17,9 @@ public class DB_Main {
     public DB_Main() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/SLEMS", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://database-1.czvs2zt423pf.us-east-1.rds.amazonaws.com:3306/SLEMS", "admin", "SLEMS2171");
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * from SLEMS");
+            rs = st.executeQuery("SELECT * from employees");
             while (rs.next()) {
                 System.out.println(rs.getInt(1) +
                         " " + rs.getString(2) +
