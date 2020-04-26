@@ -1,5 +1,6 @@
 package Security;
 
+import UI.HomeUI;
 import User.User;
 
 import javax.swing.*;
@@ -77,8 +78,11 @@ public class LoginUI {
             }
             username = this.getUsername().getText();
             User user = new User();
-            user.Login(username,Password);
-
+            if (user.Login(username,Password).contains("Successful")) {
+                JOptionPane.showMessageDialog(getFrame(), user.Login(username, Password), "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(HomeUI.class.getResource("/check-mark.png")));
+            }
+            else
+                JOptionPane.showMessageDialog(getFrame(),user.Login(username,Password),"SLEMS",JOptionPane.WARNING_MESSAGE);
 
         });
         btnLogin.setBounds(199, 374, 168, 34);

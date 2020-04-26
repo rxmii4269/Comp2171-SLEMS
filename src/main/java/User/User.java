@@ -1,10 +1,10 @@
 package User;
 
 import Database.DB_Main;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 public class User {
     private String firstName;
@@ -93,19 +93,31 @@ public class User {
 
     }
 
-    public void Login(String username,String password) {
+    public String Login(String username,String password) {
+        String db_username = "";
+        String db_password = "";
+        String message ="";
         try{
+
             DB_Main db = new DB_Main();
-            String[] columns={"username","password"};
+            String[] columns={"username","password","position"};
             Object[] params = {username};
            ResultSet rs = db.select("employees",columns,"username= ?",params);
-           while (rs.next()){
-               System.out.println(rs.getString("username")+ " - "+rs.getString("password"));
+           while (rs.next()) {
+               db_username = rs.getString("username");
+               db_password = rs.getString("password");
            }
+           if (BCrypt.checkpw(password,db_password)){
+               message = "Login Successful";
+           }
+           else
+               message = "Incorrect Credentials";
+
 
         }catch (SQLException e){
             System.out.println("error - " + e.getMessage());
         }
+        return message;
     }
 
 }
