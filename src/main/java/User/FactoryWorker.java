@@ -1,29 +1,27 @@
 package User;
 
-public class Subordinate extends User {
+public class FactoryWorker extends User {
     private String employeeID;
     private String firstName;
     private String lastName;
-    private Position position;
     private String emailAddress;
     private long phoneNumber;
 
-    public Subordinate(String employeeID, String firstName, String lastName, String emailAddress, long phoneNumber, Position position) {
-        super(employeeID, firstName, lastName, emailAddress, phoneNumber, Position.Subordinate);
+    public FactoryWorker(String employeeID, String firstName, String lastName, String emailAddress, long phoneNumber) {
+        super(employeeID, firstName, lastName, emailAddress, phoneNumber);
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.position = position;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmployeeID() {
+    public String getId() {
         return this.employeeID;
     }
 
-    public void setEmployeeID(String employeeID) {
-        this.employeeID = employeeID;
+    public void setId(String id) {
+        this.employeeID = id;
     }
 
     public String getFirstName() {
@@ -42,17 +40,9 @@ public class Subordinate extends User {
         this.lastName = lastName;
     }
 
-    public Position getPosition() {
-        return this.position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
     public String toString() {
-        String var10000 = this.getLoginName();
-        return "Welcome Employee " + var10000 + this.getEmployeeID() + this.getPosition();
+        String var10000 = this.getUsername();
+        return "Welcome Employee " + var10000 + this.getId();
     }
 
     public String getEmailAddress() {

@@ -1,7 +1,7 @@
 package UI;
 
 import Report.Report;
-import Security.Login_UserUI;
+import Security.LoginUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -165,12 +165,8 @@ public class HomeUI {
         btnLogout.setBackground(Color.WHITE);
         btnLogout.addActionListener((e) -> {
             this.frame.dispose();
-            Login_UserUI login = null;
-            try {
-                login = new Login_UserUI();
-            } catch (IOException | FontFormatException ioException) {
-                ioException.printStackTrace();
-            }
+            LoginUI login = null;
+            login = new LoginUI();
             assert login != null;
             login.getFrame().setVisible(true);
         });

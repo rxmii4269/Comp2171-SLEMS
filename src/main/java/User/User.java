@@ -1,45 +1,28 @@
 package User;
 
-import java.awt.FontFormatException;
-import java.io.IOException;
-import java.util.ArrayList;
+import Database.DB_Main;
 
-import Security.Login_UserUI;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 
 public class User {
     private String firstName;
     private String lastName;
     private String emailAddress;
-    private String employeeID;
+    private String id;
     private long phoneNum;
+    private String username;
     private String password;
-    private String loginName;
-    private Position position;
-    private ArrayList<String> details = new ArrayList<>();
-
     public User() {
     }
 
-    User(String employeeID, String firstName, String lastName, String emailAddress, long phoneNum, Position position) {
-        this.employeeID = employeeID;
+    User(String id, String firstName, String lastName, String emailAddress, long phoneNum) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.position = position;
         this.emailAddress = emailAddress;
         this.phoneNum = phoneNum;
-    }
-
-    public static void main(String[] args) {
-        User user = new User();
-        user.Login();
-    }
-
-    public Position getPosition() {
-        return this.position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
     }
 
     public String getFirstName() {
@@ -66,12 +49,12 @@ public class User {
         this.emailAddress = emailAddress;
     }
 
-    public String getEmployeeID() {
-        return this.employeeID;
+    public String getId() {
+        return this.id;
     }
 
-    public void setEmployeeID(String employeeID) {
-        this.employeeID = employeeID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public long getPhoneNumber() {
@@ -90,42 +73,39 @@ public class User {
         this.password = password;
     }
 
-    String getLoginName() {
-        return this.loginName;
+    String getUsername() {
+        return this.username;
     }
 
     public void setLoginName() {
         String var10001 = this.getFirstName();
-        this.loginName = var10001 + this.getLastName();
+        this.username = var10001 + this.getLastName();
     }
 
     public void viewUser() {
-        if (this.loginName.equalsIgnoreCase("Supervisor")) {
-            System.out.println("Current user is " + this.getLoginName());
-        } else if (this.getLoginName().equalsIgnoreCase("Subordinate")) {
-            System.out.println("Current user is " + this.getLoginName());
+        if (this.username.equalsIgnoreCase("Supervisor")) {
+            System.out.println("Current user is " + this.getUsername());
+        } else if (this.getUsername().equalsIgnoreCase("Subordinate")) {
+            System.out.println("Current user is " + this.getUsername());
         } else {
             System.err.println("THERE'S NO USER CURRENTLY ONLINE \\n\" + \"GOODBYE");
         }
 
     }
 
-    private void Login() {
-        Login_UserUI login = null;
-        try {
-            login = new Login_UserUI();
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
+    public void Login(String username,String password) {
+        try{
+            DB_Main db = new DB_Main();
+            String[] columns={"username","password"};
+            Object[] params = {username};
+           ResultSet rs = db.select("employees",columns,"username= ?",params);
+           while (rs.next()){
+               System.out.println(rs.getString("username")+ " - "+rs.getString("password"));
+           }
+
+        }catch (SQLException e){
+            System.out.println("error - " + e.getMessage());
         }
-        assert login != null;
-        login.getFrame().setVisible(true);
     }
 
-    public ArrayList<String> getDetails() {
-        return this.details;
-    }
-
-    public void setDetails(ArrayList<String> details) {
-        this.details = details;
-    }
 }

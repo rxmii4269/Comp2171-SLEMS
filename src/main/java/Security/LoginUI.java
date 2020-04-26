@@ -1,12 +1,12 @@
 package Security;
 
-import UI.HomeUI;
+import User.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class Login_UserUI {
+public class LoginUI {
     private String username;
     private JFrame frame;
     private JPasswordField passwordField;
@@ -14,8 +14,13 @@ public class Login_UserUI {
     private String Password = "";
     private String savedU;
 
-    public Login_UserUI() throws IOException, FontFormatException {
-        this.initialize();
+//    public LoginUI() throws IOException, FontFormatException {
+//        this.initialize();
+//    }
+
+    public static void main(String[] args) throws IOException, FontFormatException {
+        LoginUI ui = new LoginUI();
+        ui.initialize();
     }
 
     public void initialize() throws IOException, FontFormatException {
@@ -70,28 +75,10 @@ public class Login_UserUI {
                 String tmp = this.Password;
                 this.Password = tmp + s;
             }
+            username = this.getUsername().getText();
+            User user = new User();
+            user.Login(username,Password);
 
-            this.username = this.getUsername().getText();
-            HomeUI home;
-            if (this.Password.equalsIgnoreCase("admin") && this.username.equalsIgnoreCase("Supervisor")) {
-                JOptionPane.showMessageDialog(this.getFrame(), "Login Successful\n Welcome SuperVisor", "SLEMS SUPERVISOR", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/check-mark.png")));
-                this.savedU = this.getUsername().getText();
-                this.frame.dispose();
-                home = new HomeUI();
-                home.getFrame().setVisible(true);
-            } else if (this.Password.equalsIgnoreCase("worker") && this.username.equalsIgnoreCase("Subordinate")) {
-                JOptionPane.showMessageDialog(this.getFrame(), "Login Successful\n Welcome Worker", "SLEMS WORKER", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("check-mark.png")));
-                this.getPassword().setText(null);
-                this.getUsername().setText(null);
-                this.frame.dispose();
-                home = new HomeUI();
-                home.getFrame().setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this.getFrame(), "Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
-                this.getPassword().setText(null);
-                this.getUsername().setText(null);
-                this.getUsername().grabFocus();
-            }
 
         });
         btnLogin.setBounds(199, 374, 168, 34);
@@ -124,6 +111,7 @@ public class Login_UserUI {
             this.getUsername().grabFocus();
         });
         this.frame.getContentPane().add(btnReset);
+        frame.setVisible(true);
     }
 
     public JFrame getFrame() {

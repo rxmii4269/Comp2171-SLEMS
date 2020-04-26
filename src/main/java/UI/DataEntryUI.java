@@ -1,6 +1,6 @@
 package UI;
 
-import Security.Login_UserUI;
+import Security.LoginUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,12 +67,8 @@ class DataEntryUI extends JFrame {
         this.getExitButton().addActionListener((e) -> {
             this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             this.dispose();
-            Login_UserUI window = null;
-            try {
-                window = new Login_UserUI();
-            } catch (IOException | FontFormatException ioException) {
-                ioException.printStackTrace();
-            }
+            LoginUI window = null;
+            window = new LoginUI();
             try {
                 assert window != null;
                 window.initialize();

@@ -1,7 +1,6 @@
 package UI;
 
-import User.Position;
-import User.Subordinate;
+import User.FactoryWorker;
 import User.Supervisor;
 
 import javax.swing.*;
@@ -92,7 +91,7 @@ public class New_UserUI {
                 assert this.writeTable != null;
 
                 this.out.print(String.format(this.formatStr, this.details.get(0), this.details.get(1), this.details.get(2), this.details.get(3), this.details.get(4), this.details.get(5)));
-                new Subordinate(this.getEmpIDField().getText(), this.getFNameField().getText(), this.getLNameField().getText(), this.getEmailField().getText(), Long.parseLong(this.getPhoneField().getText()), Position.Subordinate);
+                new FactoryWorker(this.getEmpIDField().getText(), this.getFNameField().getText(), this.getLNameField().getText(), this.getEmailField().getText(), Long.parseLong(this.getPhoneField().getText()));
             } else {
                 System.out.println("Please select the correct letters");
                 System.out.println((new String(new char[50])).replace("\u0000", "\r\n"));
