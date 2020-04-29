@@ -80,6 +80,8 @@ public class LoginUI {
             User user = new User();
             if (user.Login(username,Password).contains("Successful")) {
                 JOptionPane.showMessageDialog(getFrame(), user.Login(username, Password), "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(HomeUI.class.getResource("/check-mark.png")));
+                getFrame().getContentPane().removeAll();
+                getFrame().repaint();
             }
             else
                 JOptionPane.showMessageDialog(getFrame(),user.Login(username,Password),"SLEMS",JOptionPane.WARNING_MESSAGE);
