@@ -1,4 +1,4 @@
-package User;
+package View.User;
 
 import java.io.Serializable;
 

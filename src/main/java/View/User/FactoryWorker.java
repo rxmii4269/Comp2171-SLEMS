@@ -1,4 +1,4 @@
-package User;
+package View.User;
 
 public class FactoryWorker extends User {
     private String employeeID;

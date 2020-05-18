@@ -4,7 +4,7 @@
 
 ## Description
 
-SLEMS (Super Fresh Liquid Eggs Management System) is a inventory management system that is tailored towards managing large supplies of eggs in a factory and also User Management.
+SLEMS (Super Fresh Liquid Eggs Management System) is a inventory management system that is tailored towards managing large supplies of eggs in a factory and also View.UI.User Management.
 
 ---
 ## Pre-requisites

@@ -1,7 +1,7 @@
-package UI;
+package View.UI;
 
 import Report.Report;
-import Security.LoginUI;
+import View.Security.LoginUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,7 +56,7 @@ public class HomeUI {
         lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 25));
         lblNewLabel_3.setBounds(159, 118, 219, 28);
         this.frame.getContentPane().add(lblNewLabel_3);
-        JButton btnNewButton = new JButton("Add/Edit  User");
+        JButton btnNewButton = new JButton("Add/Edit  View.UI.User");
         btnNewButton.setForeground(Color.WHITE);
         btnNewButton.setBackground(new Color(25, 25, 112));
         btnNewButton.addActionListener((e) -> {
@@ -99,7 +99,13 @@ public class HomeUI {
         JButton btnAddOrders = new JButton("Add Order");
         btnAddOrders.addActionListener((e) -> {
             this.getFrame().dispose();
-            New_OrderUI order = new New_OrderUI();
+            New_OrderUI order = null;
+            try {
+                order = new New_OrderUI();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            assert order != null;
             order.getFrame().setVisible(true);
         });
         btnAddOrders.setForeground(Color.WHITE);
@@ -168,7 +174,7 @@ public class HomeUI {
             LoginUI login = null;
             login = new LoginUI();
             assert login != null;
-            login.getFrame().setVisible(true);
+            login.setVisible(true);
         });
         btnLogout.setBounds(455, 8, 89, 23);
         this.frame.getContentPane().add(btnLogout);

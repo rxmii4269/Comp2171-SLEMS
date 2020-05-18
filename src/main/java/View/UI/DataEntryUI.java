@@ -1,6 +1,6 @@
-package UI;
+package View.UI;
 
-import Security.LoginUI;
+import View.Security.LoginUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,12 +69,8 @@ class DataEntryUI extends JFrame {
             this.dispose();
             LoginUI window = null;
             window = new LoginUI();
-            try {
-                assert window != null;
-                window.initialize();
-            } catch (IOException | FontFormatException ioException) {
-                ioException.printStackTrace();
-            }
+            assert window != null;
+            window.setVisible(true);
         });
         this.saveButton = new JButton("Save");
         this.getSaveButton().addActionListener((e) -> {

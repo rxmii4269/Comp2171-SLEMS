@@ -1,6 +1,6 @@
 package Data;
 
-import UI.Enter_DataUI;
+import View.UI.Enter_DataUI;
 
 class Product {
     private Enter_DataUI Data;

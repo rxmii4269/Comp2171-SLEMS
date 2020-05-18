@@ -1,4 +1,4 @@
-package Database;
+package Model.Database;
 
 public class Query {
     private StringBuilder query;

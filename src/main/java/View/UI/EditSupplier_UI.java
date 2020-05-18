@@ -1,13 +1,12 @@
-package UI;
+package View.UI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class EditSupplier_UI {
-    private JFrame frame;
+public class EditSupplier_UI extends JFrame {
 
-    EditSupplier_UI() {
+    EditSupplier_UI() throws IOException {
         this.initialize();
     }
 
@@ -15,7 +14,7 @@ public class EditSupplier_UI {
         EventQueue.invokeLater(() -> {
             try {
                 EditSupplier_UI window = new EditSupplier_UI();
-                window.frame.setVisible(true);
+                window.setVisible(true);
             } catch (Exception var1) {
                 var1.printStackTrace();
             }
@@ -23,62 +22,63 @@ public class EditSupplier_UI {
         });
     }
 
-    private void initialize() {
-        this.frame = new JFrame();
-        this.frame.getContentPane().setBackground(Color.WHITE);
-        this.frame.setBounds(100, 100, 570, 520);
-        this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.frame.setResizable(false);
-        this.frame.setFocusable(true);
-        this.frame.getContentPane().setLayout(null);
-        New_UserUI.data3(this.frame);
+    private void initialize() throws IOException {
+
+        getContentPane().setBackground(Color.WHITE);
+        setBounds(100, 100, 570, 520);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        setFocusable(true);
+        getContentPane().setLayout(null);
+        New_UserUI newuser = new New_UserUI();
+        newuser.data3();
         JLabel label_1 = new JLabel("Company Name");
         label_1.setFont(new Font("Arial", Font.BOLD, 15));
         label_1.setBounds(300, 149, 115, 14);
-        this.frame.getContentPane().add(label_1);
+        getContentPane().add(label_1);
         JTextField CompanyName = new JTextField();
         CompanyName.setBounds(300, 174, 202, 23);
-        this.frame.getContentPane().add(CompanyName);
+        getContentPane().add(CompanyName);
         CompanyName.setColumns(10);
         JLabel lblEmailAddress = new JLabel("Email Address");
         lblEmailAddress.setFont(new Font("Arial", Font.BOLD, 15));
         lblEmailAddress.setBounds(300, 268, 108, 14);
-        this.frame.getContentPane().add(lblEmailAddress);
+        getContentPane().add(lblEmailAddress);
         JTextField emailField = new JTextField();
         emailField.setColumns(10);
         emailField.setBounds(300, 293, 202, 23);
-        this.frame.getContentPane().add(emailField);
+        getContentPane().add(emailField);
         JLabel lblPhoneNumber = new JLabel("Phone Number");
         lblPhoneNumber.setFont(new Font("Arial", Font.BOLD, 15));
         lblPhoneNumber.setBounds(300, 327, 108, 14);
-        this.frame.getContentPane().add(lblPhoneNumber);
+        getContentPane().add(lblPhoneNumber);
         JTextField phoneField = new JTextField();
         phoneField.setColumns(10);
         phoneField.setBounds(300, 352, 202, 23);
-        this.frame.getContentPane().add(phoneField);
+        getContentPane().add(phoneField);
         JLabel lblFarmAddress = new JLabel("Farm Address");
         lblFarmAddress.setFont(new Font("Arial", Font.BOLD, 15));
         lblFarmAddress.setBounds(300, 384, 108, 14);
-        this.frame.getContentPane().add(lblFarmAddress);
+        getContentPane().add(lblFarmAddress);
         JTextField FAddressField = new JTextField();
         FAddressField.setColumns(10);
         FAddressField.setBounds(300, 409, 202, 23);
-        this.frame.getContentPane().add(FAddressField);
+        getContentPane().add(FAddressField);
         JButton btnAddSupplier = new JButton("MAKE EDIT");
         btnAddSupplier.addActionListener((e) -> {
         });
         btnAddSupplier.setForeground(Color.BLACK);
         btnAddSupplier.setBackground(new Color(25, 25, 112));
         btnAddSupplier.setBounds(325, 443, 140, 23);
-        this.frame.getContentPane().add(btnAddSupplier);
-        New_UserUI.date(this.frame);
+        getContentPane().add(btnAddSupplier);
+        newuser.date();
         JComboBox<String> comboBox = new JComboBox<>();
         comboBox.setBounds(43, 231, 193, 29);
-        this.frame.getContentPane().add(comboBox);
+        getContentPane().add(comboBox);
         JLabel lblToEditA = new JLabel("Choose Supplier to Edit ");
         lblToEditA.setHorizontalAlignment(0);
         lblToEditA.setBounds(43, 209, 193, 14);
-        this.frame.getContentPane().add(lblToEditA);
+        getContentPane().add(lblToEditA);
         JButton btnBack = new JButton("BACK");
         btnBack.addActionListener((e) -> {
             this.getFrame().dispose();
@@ -97,10 +97,10 @@ public class EditSupplier_UI {
         });
         btnBack.setBackground(Color.WHITE);
         btnBack.setBounds(10, 11, 89, 23);
-        this.frame.getContentPane().add(btnBack);
+        getContentPane().add(btnBack);
     }
 
     JFrame getFrame() {
-        return this.frame;
+        return this;
     }
 }

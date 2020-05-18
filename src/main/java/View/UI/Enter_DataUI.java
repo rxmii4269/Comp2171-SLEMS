@@ -1,4 +1,4 @@
-package UI;
+package View.UI;
 
 import Data.Egg;
 
@@ -12,8 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Enter_DataUI {
-    private JFrame frame;
+public class Enter_DataUI extends JFrame {
     private JTextField IDField;
     private JTextField ECollectedField;
     private JTextField ESpoiltField;
@@ -42,80 +41,81 @@ public class Enter_DataUI {
         this.initialize();
     }
 
-    private void initialize() {
-        this.frame = new JFrame();
-        this.frame.getContentPane().setBackground(Color.WHITE);
-        this.frame.setBounds(100, 100, 570, 520);
-        this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.frame.setResizable(false);
-        this.frame.setFocusable(true);
-        this.frame.getContentPane().setLayout(null);
-        New_UserUI.data3(this.frame);
+    private void initialize() throws IOException {
+
+        getContentPane().setBackground(Color.WHITE);
+        setBounds(100, 100, 570, 520);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        setFocusable(true);
+        getContentPane().setLayout(null);
+        New_UserUI newuser = new New_UserUI();
+        newuser.data3();
         JLabel lblNewLabel_2 = new JLabel("Enter Workstation Section:");
         lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 15));
         lblNewLabel_2.setBounds(33, 250, 202, 14);
-        this.frame.getContentPane().add(lblNewLabel_2);
+        getContentPane().add(lblNewLabel_2);
         this.IDField = new JTextField();
         this.IDField.setBounds(33, 201, 202, 28);
-        this.frame.getContentPane().add(this.IDField);
+        getContentPane().add(this.IDField);
         this.IDField.setColumns(10);
         JLabel lblEnterYourId = new JLabel("Enter your ID Number:");
         lblEnterYourId.setFont(new Font("Arial", Font.BOLD, 15));
         lblEnterYourId.setBounds(33, 176, 180, 14);
-        this.frame.getContentPane().add(lblEnterYourId);
+        getContentPane().add(lblEnterYourId);
         JLabel lblEmailAddress = new JLabel("Enter Workstation Number:");
         lblEmailAddress.setFont(new Font("Arial", Font.BOLD, 15));
         lblEmailAddress.setBounds(33, 336, 202, 14);
-        this.frame.getContentPane().add(lblEmailAddress);
+        getContentPane().add(lblEmailAddress);
         JLabel lblPleaseEnterSupervisor = new JLabel("Enter Eggs Collected:");
         lblPleaseEnterSupervisor.setHorizontalAlignment(2);
         lblPleaseEnterSupervisor.setFont(new Font("Arial", Font.BOLD, 15));
         lblPleaseEnterSupervisor.setBounds(295, 205, 174, 23);
-        this.frame.getContentPane().add(lblPleaseEnterSupervisor);
+        getContentPane().add(lblPleaseEnterSupervisor);
         this.ECollectedField = new JTextField();
         this.ECollectedField.setColumns(10);
         this.ECollectedField.setBounds(473, 202, 55, 23);
-        this.frame.getContentPane().add(this.ECollectedField);
+        getContentPane().add(this.ECollectedField);
         JLabel lblPleaseEnterEmployee = new JLabel("Enter Eggs Spoilt:");
         lblPleaseEnterEmployee.setHorizontalAlignment(2);
         lblPleaseEnterEmployee.setFont(new Font("Arial", Font.BOLD, 15));
         lblPleaseEnterEmployee.setBounds(295, 242, 168, 23);
-        this.frame.getContentPane().add(lblPleaseEnterEmployee);
+        getContentPane().add(lblPleaseEnterEmployee);
         JLabel lblEnterEggsBroken = new JLabel("Enter Eggs Broken:");
         lblEnterEggsBroken.setHorizontalAlignment(2);
         lblEnterEggsBroken.setFont(new Font("Arial", Font.BOLD, 15));
         lblEnterEggsBroken.setBounds(295, 282, 161, 21);
-        this.frame.getContentPane().add(lblEnterEggsBroken);
+        getContentPane().add(lblEnterEggsBroken);
         JLabel lblNewLabel_3 = new JLabel("ENTER DAILY DATA ");
         lblNewLabel_3.setForeground(SystemColor.windowBorder);
         lblNewLabel_3.setHorizontalAlignment(0);
         lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 18));
         lblNewLabel_3.setBounds(162, 137, 219, 28);
-        this.frame.getContentPane().add(lblNewLabel_3);
+        getContentPane().add(lblNewLabel_3);
         DateTimeFormatter date = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         JLabel lblNewLabel_4 = new JLabel(date.format(now));
         lblNewLabel_4.setHorizontalAlignment(0);
         lblNewLabel_4.setBounds(175, 112, 206, 14);
-        this.frame.getContentPane().add(lblNewLabel_4);
+        getContentPane().add(lblNewLabel_4);
         this.ESpoiltField = new JTextField();
         this.ESpoiltField.setColumns(10);
         this.ESpoiltField.setBounds(473, 238, 55, 23);
-        this.frame.getContentPane().add(this.ESpoiltField);
+        getContentPane().add(this.ESpoiltField);
         this.EBrokenField = new JTextField();
         this.EBrokenField.setColumns(10);
         this.EBrokenField.setBounds(473, 280, 55, 23);
-        this.frame.getContentPane().add(this.EBrokenField);
+        getContentPane().add(this.EBrokenField);
         JButton btnGoHome = new JButton("Go Home");
         btnGoHome.addActionListener((e) -> {
-            this.frame.dispose();
+            dispose();
             HomeUI home = new HomeUI();
             home.getFrame().setVisible(true);
         });
         btnGoHome.setForeground(Color.WHITE);
         btnGoHome.setBackground(new Color(25, 25, 112));
         btnGoHome.setBounds(22, 434, 147, 28);
-        this.frame.getContentPane().add(btnGoHome);
+        getContentPane().add(btnGoHome);
         JButton btnSaveData = new JButton("Save Data");
         btnSaveData.setForeground(Color.WHITE);
         btnSaveData.setBackground(new Color(25, 25, 112));
@@ -142,20 +142,20 @@ public class Enter_DataUI {
             }
 
         });
-        this.frame.getContentPane().add(btnSaveData);
+        getContentPane().add(btnSaveData);
         JButton btnUnitsProducible = new JButton("Units Producible");
         btnUnitsProducible.setForeground(Color.WHITE);
         btnUnitsProducible.setBackground(new Color(25, 25, 112));
         btnUnitsProducible.setBounds(361, 434, 147, 28);
-        this.frame.getContentPane().add(btnUnitsProducible);
+        getContentPane().add(btnUnitsProducible);
         this.workstationS = new JTextField();
         this.workstationS.setColumns(10);
         this.workstationS.setBounds(33, 275, 202, 28);
-        this.frame.getContentPane().add(this.workstationS);
+        getContentPane().add(this.workstationS);
         this.workstationN = new JTextField();
         this.workstationN.setColumns(10);
         this.workstationN.setBounds(33, 361, 202, 28);
-        this.frame.getContentPane().add(this.workstationN);
+        getContentPane().add(this.workstationN);
         JButton btnBack = new JButton("BACK");
         btnBack.addActionListener((e) -> {
             this.getFrame().dispose();
@@ -164,11 +164,11 @@ public class Enter_DataUI {
         });
         btnBack.setBackground(Color.WHITE);
         btnBack.setBounds(10, 11, 89, 23);
-        this.frame.getContentPane().add(btnBack);
+        getContentPane().add(btnBack);
     }
 
     JFrame getFrame() {
-        return this.frame;
+        return this;
     }
 
     private JTextField getWorkstationS() {

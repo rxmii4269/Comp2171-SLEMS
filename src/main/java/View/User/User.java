@@ -1,6 +1,7 @@
-package User;
+package View.User;
 
-import Database.DB_Main;
+import Model.Database.DB_Main;
+import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.ResultSet;
@@ -14,6 +15,8 @@ public class User {
     private long phoneNum;
     private String username;
     private String password;
+    private String role;
+    private final JSONObject user = new JSONObject();
     public User() {
     }
 
@@ -100,15 +103,23 @@ public class User {
         try{
 
             DB_Main db = new DB_Main();
-            String[] columns={"username","password","position"};
+            String[] columns={"username","password","position","empid"};
             Object[] params = {username};
            ResultSet rs = db.select("employees",columns,"username= ?",params);
-           while (rs.next()) {
+
+            while (rs.next()) {
                db_username = rs.getString("username");
                db_password = rs.getString("password");
+               role = rs.getString("position");
+               id = rs.getString("empid");
            }
            if (BCrypt.checkpw(password,db_password)){
                message = "Login Successful";
+               user.put("username",db_username);
+               user.put("password",db_password);
+               user.put("role",role);
+               user.put("id",id);
+               System.out.println(user.toString());
            }
            else
                message = "Incorrect Credentials";
