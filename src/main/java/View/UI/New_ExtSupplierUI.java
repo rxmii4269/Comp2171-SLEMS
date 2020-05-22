@@ -1,16 +1,12 @@
 package View.UI;
 
-import Data.ExternalEggSupplier;
-import Data.ExternalEggSupply;
+import Model.Database.DB_Main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.sql.SQLException;
+import java.util.Arrays;
 
 class New_ExtSupplierUI extends JFrame {
 
@@ -19,25 +15,16 @@ class New_ExtSupplierUI extends JFrame {
     private JTextField EEmailField;
     private JTextField EPhoneField;
     private JTextField EFAddressField;
-    private final FileWriter writeTable;
-    private final PrintWriter out;
-    private final ExternalEggSupplier externalEggSupplier;
-    private final ArrayList<String> details;
-    private final String formatStr;
+    private DB_Main db;
+    private Integer count = Math.toIntExact(System.nanoTime() / 100000);
 
-    New_ExtSupplierUI() throws IOException {
-        this.writeTable = new FileWriter("Supplier Info.txt", StandardCharsets.UTF_8, true);
-        BufferedWriter bw = new BufferedWriter(this.writeTable);
-        this.out = new PrintWriter(bw);
-        this.externalEggSupplier = new ExternalEggSupplier();
-        this.details = new ArrayList<>();
-        this.formatStr = "%-30s %-30s %-30s %-20s %-20s%n";
-        this.initialize();
-    }
 
-    private void initialize() throws IOException {
+    public void initialize() {
+
+        setSize(600,600);
         getContentPane().setBackground(Color.WHITE);
         setBounds(100, 100, 570, 520);
+        setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setFocusable(true);
@@ -48,10 +35,10 @@ class New_ExtSupplierUI extends JFrame {
         this.CompanyName.setBounds(49, 184, 202, 23);
         getContentPane().add(this.CompanyName);
         this.CompanyName.setColumns(10);
-        JLabel label_1 = new JLabel("Company Name");
-        label_1.setFont(new Font("Arial", Font.BOLD, 15));
-        label_1.setBounds(49, 159, 120, 14);
-        getContentPane().add(label_1);
+        JLabel company_name = new JLabel("Company Name");
+        company_name.setFont(new Font("Arial", Font.BOLD, 15));
+        company_name.setBounds(49, 159, 120, 14);
+        getContentPane().add(company_name);
         JLabel lblEmailAddress = new JLabel("Email Address");
         lblEmailAddress.setFont(new Font("Arial", Font.BOLD, 15));
         lblEmailAddress.setBounds(49, 218, 108, 14);
@@ -82,10 +69,10 @@ class New_ExtSupplierUI extends JFrame {
         this.EFAddressField.setColumns(10);
         this.EFAddressField.setBounds(49, 368, 202, 23);
         getContentPane().add(this.EFAddressField);
-        JLabel lblNewLabel_2 = new JLabel("Amount of Eggs");
-        lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 15));
-        lblNewLabel_2.setBounds(49, 404, 108, 14);
-        getContentPane().add(lblNewLabel_2);
+        JLabel amountOfEggs = new JLabel("Amount of Eggs");
+        amountOfEggs.setFont(new Font("Arial", Font.BOLD, 15));
+        amountOfEggs.setBounds(49, 404, 108, 14);
+        getContentPane().add(amountOfEggs);
         this.AmtEggField = new JTextField();
         this.AmtEggField.setColumns(10);
         this.AmtEggField.setBounds(49, 430, 202, 23);
@@ -123,32 +110,31 @@ class New_ExtSupplierUI extends JFrame {
             delete.getFrame().setVisible(true);
         });
 
-        new_userUI.date();
-        JButton button_2 = new JButton("Add Supplier");
-        button_2.setForeground(Color.WHITE);
-        button_2.setBackground(new Color(25, 25, 112));
-        button_2.setBounds(334, 350, 168, 23);
-        button_2.addActionListener((e) -> {
-            this.out.print(String.format(this.formatStr, "Company Name", "Email Address", "Phone Number", "Farm Address", "Amount of Eggs"));
-            this.details.add(this.getCompanyName().getText());
-            this.details.add(this.getEEmailField().getText());
-            this.details.add(this.getEPhoneField().getText());
-            this.details.add(this.getEFAddressField().getText());
-            this.details.add(this.getAmtEggField().getText());
-            this.externalEggSupplier.externalEggSupplier.add(this.getCompanyName().getText());
-            this.externalEggSupplier.externalEggSupplier.add(this.getEEmailField().getText());
-            this.externalEggSupplier.externalEggSupplier.add(this.getEPhoneField().getText());
-            this.externalEggSupplier.externalEggSupplier.add(this.getEFAddressField().getText());
-            this.externalEggSupplier.externalEggSupplier.add(this.getAmtEggField().getText());
-            new ExternalEggSupply(this.getAmtEggField().getText());
+        JButton addSupplier = new JButton("Add Supplier");
+        addSupplier.setForeground(Color.WHITE);
+        addSupplier.setBackground(new Color(25, 25, 112));
+        addSupplier.setBounds(334, 350, 168, 23);
+        addSupplier.addActionListener((e) -> {
 
-            assert this.writeTable != null;
+            db = new DB_Main();
+            String companyName = getCompanyName().getText();
+            String emailAddress = getEEmailField().getText();
+            String phoneNumber = getEPhoneField().getText();
+            String address = getEFAddressField().getText();
+            String amount_of_Eggs = getAmtEggField().getText();
+            count++;
+            Object[] newExtSupplier = {count,companyName,emailAddress,phoneNumber,address,amount_of_Eggs};
+            System.out.println(Arrays.toString(newExtSupplier));
 
-            this.out.print(String.format(this.formatStr, this.details.get(0), this.details.get(1), this.details.get(2), this.details.get(3), this.details.get(4)));
-            this.out.close();
+            try {
+
+                db.insert("external_supplier",newExtSupplier);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this.getFrame(), "Supplier added", "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/check-mark.png")));
         });
-        getContentPane().add(button_2);
+        getContentPane().add(addSupplier);
         JButton btnBack = new JButton("BACK");
         btnBack.addActionListener((e) -> {
             this.getFrame().dispose();

@@ -10,17 +10,6 @@ public class EditSupplier_UI extends JFrame {
         this.initialize();
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                EditSupplier_UI window = new EditSupplier_UI();
-                window.setVisible(true);
-            } catch (Exception var1) {
-                var1.printStackTrace();
-            }
-
-        });
-    }
 
     private void initialize() throws IOException {
 
@@ -84,15 +73,9 @@ public class EditSupplier_UI extends JFrame {
             this.getFrame().dispose();
             New_ExtSupplierUI previous = null;
 
-            try {
-                previous = new New_ExtSupplierUI();
-            } catch (IOException var4) {
-                var4.printStackTrace();
-            }
+            previous = new New_ExtSupplierUI();
 
-            if (previous != null) {
-                previous.getFrame().setVisible(true);
-            }
+            previous.getFrame().setVisible(true);
 
         });
         btnBack.setBackground(Color.WHITE);

@@ -24,17 +24,6 @@ public class New_OrderUI extends JFrame {
         this.initialize();
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                New_OrderUI window = new New_OrderUI();
-                window.setVisible(true);
-            } catch (Exception var1) {
-                var1.printStackTrace();
-            }
-
-        });
-    }
 
     private void initialize() throws IOException {
 

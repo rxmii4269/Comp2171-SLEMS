@@ -11,26 +11,13 @@ public class Edit_UserUI extends JFrame {
         this.initialize();
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                Edit_UserUI window = new Edit_UserUI();
-                window.setVisible(true);
-            } catch (Exception var1) {
-                var1.printStackTrace();
-            }
-
-        });
-    }
 
     private void initialize() throws IOException {
         getContentPane().setBackground(Color.WHITE);
         setBounds(100, 100, 570, 520);
         HomeUI.closeFrame(this);
-        Component label = null;
+
         assert false;
-        label.setBounds(0, 27, 554, 23);
-        getContentPane().add(label);
         JLabel lblNewLabel = new JLabel("SUPER FRESH EGGS");
         lblNewLabel.setForeground(new Color(25, 25, 112));
         lblNewLabel.setHorizontalAlignment(0);
@@ -120,14 +107,10 @@ public class Edit_UserUI extends JFrame {
             this.getFrame().dispose();
             New_UserUI previous = null;
 
-            try {
-                previous = new New_UserUI();
-            } catch (IOException var4) {
-                var4.printStackTrace();
-            }
+            previous = new New_UserUI();
 
             if (previous != null) {
-                previous.getFrame().setVisible(true);
+//                previous.setVisible(true);
             }
 
         });

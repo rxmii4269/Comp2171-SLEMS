@@ -1,14 +1,11 @@
 package View.UI;
 
 import Data.Egg;
+import Model.Database.DB_Main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -21,33 +18,18 @@ public class Enter_DataUI extends JFrame {
     private JTextField workstationN;
     private JButton btnSaveData;
     private JButton btnUnitsProducible;
-    private final PrintWriter out;
-    private final PrintWriter pout;
-    private final String formatter;
-    private final String formatStr;
     private int eggsSpoiled;
     private int eggsCollected;
     private int eggsBroken;
 
-    Enter_DataUI() throws IOException {
-        FileWriter writeTable = new FileWriter("Data.txt", StandardCharsets.UTF_8, true);
-        BufferedWriter bw = new BufferedWriter(writeTable);
-        this.out = new PrintWriter(bw);
-        FileWriter product = new FileWriter("Product.txt", StandardCharsets.UTF_8, true);
-        BufferedWriter pw = new BufferedWriter(product);
-        this.pout = new PrintWriter(pw);
-        this.formatter = "%-30s %-30s %-30s%n";
-        this.formatStr = "%-30s %-30s %-30s %-15s %-25s %-20s%n";
-        this.initialize();
-    }
-
-    private void initialize() throws IOException {
+    public void initialize() {
 
         getContentPane().setBackground(Color.WHITE);
         setBounds(100, 100, 570, 520);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setFocusable(true);
+
         getContentPane().setLayout(null);
         New_UserUI newuser = new New_UserUI();
         newuser.data3();
@@ -126,17 +108,17 @@ public class Enter_DataUI extends JFrame {
             this.setEggsBroken(Integer.parseInt(this.EBrokenField.getText()));
             new Egg(this.getIDField().getText(), date, this.getEggsCollected(), this.getEggsBroken(), this.getEggsSpoiled());
 
-            assert this.out != null;
+            Object [] Eggs={getIDField().getText(),getWorkstationS().getText(),getWorkstationN().getText(),getEggsCollected(),getEggsSpoiled(),getEggsBroken()};
+            DB_Main db = new DB_Main();
+            try {
+                db.insert("inventory",Eggs);
 
-            this.out.println(String.format(this.formatStr, this.getIDField().getText(), this.getECollectedField().getText(), this.getESpoiltField().getText(), this.getEBrokenField().getText(), this.getWorkstationS().getText(), this.getWorkstationN().getText()));
-            this.out.print("\n");
-            this.pout.print(String.format(this.formatter, "Collected Eggs", "Spoiled Eggs", "Broken Eggs"));
-            this.pout.println(String.format(this.formatter, this.getECollectedField().getText(), this.getESpoiltField().getText(), this.EBrokenField.getText()));
-            this.pout.flush();
-            this.pout.close();
-            this.out.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             if (!this.getIDField().getText().equals("") && !this.getECollectedField().getText().equals("") && !this.getESpoiltField().getText().equals("") && !this.getEBrokenField().getText().equals("") && !this.getWorkstationS().getText().equals("") && !this.getWorkstationN().getText().equals("")) {
                 JOptionPane.showMessageDialog(this.getFrame(), "Data saved", "SLEMS", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/check-mark.png")));
+                clearScreen();
             } else {
                 JOptionPane.showMessageDialog(this.getFrame(), "Please Enter All Fields", "Missing Data", JOptionPane.ERROR_MESSAGE);
             }
@@ -165,6 +147,7 @@ public class Enter_DataUI extends JFrame {
         btnBack.setBackground(Color.WHITE);
         btnBack.setBounds(10, 11, 89, 23);
         getContentPane().add(btnBack);
+        setVisible(true);
     }
 
     JFrame getFrame() {
@@ -200,6 +183,11 @@ public class Enter_DataUI extends JFrame {
         return "Eggs Collected: " + var10000 + " " + this.getEggsBroken() + " " + this.getEggsBroken();
     }
 
+    public void clearScreen(){
+        ECollectedField.setText(null);
+        ESpoiltField.setText(null);
+        EBrokenField.setText(null);
+    }
     public int getEggsCollected() {
         return this.eggsCollected;
     }

@@ -91,6 +91,22 @@ public class DB_Main {
     }
 
     /**
+     * Returns table
+     * @param table
+     * @param columns
+     * @return
+     * @throws SQLException
+     */
+
+    public ResultSet select(String table,Object[]columns) throws SQLException {
+        query = new Query();
+        query.select(columns)
+                .from(table);
+        PreparedStatement ps = con.prepareStatement(query.getQuery());
+        return ps.executeQuery();
+    }
+
+    /**
      * Returns data from a table
      * @param table
      * @param columns

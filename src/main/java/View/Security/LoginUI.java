@@ -1,15 +1,17 @@
 package View.Security;
 
-import View.UI.New_UserUI;
+import View.UI.AdminInterface;
+import View.UI.Enter_DataUI;
+import View.UI.LogControlUI;
 import View.User.User;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.io.IOException;
 
 public class LoginUI extends JFrame {
-    private final JTextField tfUsername;
+    private final JTextField tfUserID;
     private final JPasswordField pfPassword;
 
     public LoginUI() {
@@ -25,17 +27,18 @@ public class LoginUI extends JFrame {
         cs.gridwidth = 1;
         panel.add(lbCompany, cs);
 
-        JLabel lbUsername = new JLabel("Username: ");
+        JLabel lbUserID = new JLabel("ID Number" +
+                ": ");
         cs.gridx = 0;
         cs.gridy = 1;
         cs.gridwidth = 1;
-        panel.add(lbUsername, cs);
+        panel.add(lbUserID, cs);
 
-        tfUsername = new JTextField(20);
+        tfUserID = new JTextField(20);
         cs.gridx = 2;
         cs.gridy = 1;
         cs.gridwidth = 1;
-        panel.add(tfUsername, cs);
+        panel.add(tfUserID, cs);
 
         JLabel lbPassword = new JLabel("Password: ");
         cs.gridx = 0;
@@ -55,22 +58,35 @@ public class LoginUI extends JFrame {
         btnLogin.addActionListener(e -> {
             User user = new User();
 
-            if (tfUsername.getText().isEmpty()) {
+            if (tfUserID.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(getParent(), "Error in Fields Do not leave them Empty", "Login", JOptionPane.ERROR_MESSAGE);
-            } else if (user.Login(getUsername(), getPassword()).contains("Success")) {
-                JOptionPane.showMessageDialog(getParent(), String.format("Welcome %s", getUsername()), "Login", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
-                New_UserUI newuser = null;
-                try {
-                    newuser = new New_UserUI();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
+            } else if (user.Login(getUserID(), getPassword()).contains("Success")) {
+                JOptionPane.showMessageDialog(getParent(), String.format("Welcome %s", getJUsername(user.getUser())), "Login", JOptionPane.INFORMATION_MESSAGE);
+                String role = user.getUser().getString("role").toLowerCase();
+                switch (role) {
+                    case "admin":
+                        System.out.println(role);
+                        dispose();
+                        AdminInterface adminInterface = new AdminInterface();
+                        adminInterface.prepareGui();
+                        break;
+                    case "logistician":
+                        dispose();
+                        LogControlUI logControlUI = new LogControlUI();
+                        logControlUI.prepareGui();
+                        break;
+                    case "factoryworker":
+                        dispose();
+                        Enter_DataUI ui = new Enter_DataUI();
+                        ui.initialize();
+                        break;
                 }
-                assert newuser != null;
-                newuser.getFrame().setVisible(true);
+
+
+
 
             } else {
-                JOptionPane.showMessageDialog(getParent(), "Invalid username or password", "Login", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(getParent(), "Invalid ID or password", "Login", JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -96,10 +112,13 @@ public class LoginUI extends JFrame {
         ui.setVisible(true);
     }
 
-    public String getUsername() {
-        return tfUsername.getText().trim();
+    public String getUserID() {
+        return tfUserID.getText().trim();
     }
 
+    public String getJUsername(JSONObject user) {
+        return user.getString("username");
+    }
     public String getPassword() {
         return new String(pfPassword.getPassword());
     }

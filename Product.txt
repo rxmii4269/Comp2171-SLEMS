@@ -1,3 +1,0 @@
-Collected Eggs                 Spoiled Eggs                   Broken Eggs                   
-100                            3                              10                            
-

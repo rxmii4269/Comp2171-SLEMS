@@ -10,17 +10,6 @@ public class Delete_UserUI extends JFrame {
         this.initialize();
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                Delete_UserUI window = new Delete_UserUI();
-                window.setVisible(true);
-            } catch (Exception var1) {
-                var1.printStackTrace();
-            }
-
-        });
-    }
 
     private void initialize() throws IOException {
         getContentPane().setBackground(Color.WHITE);

@@ -105,7 +105,7 @@ public class User {
             DB_Main db = new DB_Main();
             String[] columns={"username","password","position","empid"};
             Object[] params = {username};
-           ResultSet rs = db.select("employees",columns,"username= ?",params);
+           ResultSet rs = db.select("employees",columns,"empid= ?",params);
 
             while (rs.next()) {
                db_username = rs.getString("username");
@@ -113,8 +113,10 @@ public class User {
                role = rs.getString("position");
                id = rs.getString("empid");
            }
+            System.out.println(BCrypt.checkpw(password,db_password));
            if (BCrypt.checkpw(password,db_password)){
-               message = "Login Successful";
+               message = "Login Successful"+' '+ role;
+
                user.put("username",db_username);
                user.put("password",db_password);
                user.put("role",role);
@@ -129,6 +131,10 @@ public class User {
             System.out.println("error - " + e.getMessage());
         }
         return message;
+    }
+
+    public JSONObject getUser(){
+        return user;
     }
 
 }
